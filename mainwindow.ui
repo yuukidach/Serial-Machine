@@ -36,6 +36,9 @@
       <height>32</height>
      </rect>
     </property>
+    <property name="acceptDrops">
+     <bool>false</bool>
+    </property>
    </widget>
    <widget class="QComboBox" name="baudBox">
     <property name="geometry">

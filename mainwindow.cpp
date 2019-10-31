@@ -4,18 +4,12 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
+    , serialPortUi(new SerialPort)
 {
     ui->setupUi(this);
+    serialPortUi->update_port_combobox(ui->portBox);
 
-    foreach(const QSerialPortInfo &info, QSerialPortInfo::availablePorts()) {
-        QSerialPort serial_port;
-        serial_port.setPort(info);
-        if (serial_port.open(QIODevice::ReadWrite)) {
-            ui->portBox->addItem(serial_port.portName());
-            serial_port.close();
-        }
-    }
-
+    ui->portBox->installEventFilter(this);
     ui->dataBitsBox->setCurrentIndex(2);
 
     baudRateOpt = new QMap<QString, QSerialPort::BaudRate>;
@@ -46,6 +40,14 @@ MainWindow::~MainWindow()
 }
 
 
+bool MainWindow::eventFilter(QObject *watched, QEvent *event) {
+    if (watched == ui->portBox) {
+        if (event->type() == QEvent::MouseButtonPress) {
+            serialPortUi->update_port_combobox(ui->portBox);
+        }
+    }
+    return false;
+}
 
 void MainWindow::read_rcv_data()
 {
@@ -62,6 +64,22 @@ void MainWindow::read_rcv_data()
 }
 
 
+void MainWindow::lock_setting(bool state)
+{
+    ui->portBox->setEnabled(state);
+    ui->baudBox->setEnabled(state);
+    ui->dataBitsBox->setEnabled(state);
+    ui->parityBox->setEnabled(state);
+    ui->stopBitsBox->setEnabled(state);
+    ui->sendButton->setEnabled(!state);
+    if (state) {
+        ui->openButton->setText(tr("Open Port"));
+    } else {
+        ui->openButton->setText(tr("Close Port"));
+    }
+}
+
+
 void MainWindow::on_openButton_clicked()
 {
     serial = new QSerialPort;
@@ -75,27 +93,12 @@ void MainWindow::on_openButton_clicked()
         serial->setFlowControl(QSerialPort::NoFlowControl);
 
         QObject::connect(serial, &QSerialPort::readyRead, this, &MainWindow::read_rcv_data);
-
-        // TODO: wrap as a function
-        ui->portBox->setEnabled(false);
-        ui->baudBox->setEnabled(false);
-        ui->dataBitsBox->setEnabled(false);
-        ui->parityBox->setEnabled(false);
-        ui->stopBitsBox->setEnabled(false);
-        ui->openButton->setText(tr("Close Port"));
-        ui->sendButton->setEnabled(true);
+        lock_setting(true);
     } else {
-        // TODO: wrap as a function
         serial->clear();
         serial->close();
         serial->deleteLater();
-        ui->portBox->setEnabled(true);
-        ui->baudBox->setEnabled(true);
-        ui->dataBitsBox->setEnabled(true);
-        ui->parityBox->setEnabled(true);
-        ui->stopBitsBox->setEnabled(true);
-        ui->openButton->setText(tr("Open Port"));
-        ui->sendButton->setEnabled(false);
+        lock_setting(false);
     }
 }
 

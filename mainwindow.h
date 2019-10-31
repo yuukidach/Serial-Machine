@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QSerialPort>
 #include <QSerialPortInfo>
+#include "serialport.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -25,11 +26,15 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    SerialPort *serialPortUi;
     QSerialPort *serial;
     QMap<QString, QSerialPort::BaudRate> *baudRateOpt;
     QMap<QString, QSerialPort::DataBits> *dataBitsOpt;
     QMap<QString, QSerialPort::Parity> *parityOpt;
     QMap<QString, QSerialPort::StopBits> *stopBitsOpt;
+
+    void lock_setting(bool state);
+    bool eventFilter(QObject *watched, QEvent *event);
 
     void read_rcv_data();
 };
