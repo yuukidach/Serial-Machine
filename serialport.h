@@ -5,17 +5,24 @@
 #include <QSerialPortInfo>
 #include "ui_mainwindow.h"
 
-//namespace Ui {
-//    class SerialPort;
-//}
+namespace Ui {
+    class SerialPort;
+}
 
-class SerialPort
+class Ui::SerialPort
 {
 public:
-    SerialPort();
+    QSerialPort *port;
+    QComboBox *portBox;
+    QTextEdit *rcvEdit;
+
+public:
+    SerialPort(QSerialPort *port,
+               QComboBox *comboBox,
+               QTextEdit *rcvEdit);
     ~SerialPort();
 
-    void update_port_combobox(QComboBox * portBox);
+    void update_port_combobox();
 };
 
 

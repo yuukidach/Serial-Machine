@@ -1,12 +1,17 @@
+#include <QString>
 #include "serialport.h"
 
-SerialPort::SerialPort()
+Ui::SerialPort::SerialPort(QSerialPort *port,
+                           QComboBox *portBox,
+                           QTextEdit *rcvEdit)
 {
-    return;
+    this->port = port;
+    this->portBox = portBox;
+    this->rcvEdit = rcvEdit;
 }
 
 
-void SerialPort::update_port_combobox(QComboBox *portBox)
+void Ui::SerialPort::update_port_combobox()
 {
     QString curText = portBox->currentText();
     portBox->clear();
@@ -15,3 +20,4 @@ void SerialPort::update_port_combobox(QComboBox *portBox)
     }
     portBox->setCurrentText(curText);
 }
+

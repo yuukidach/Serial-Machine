@@ -4,10 +4,12 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
-    , serialPortUi(new SerialPort)
 {
     ui->setupUi(this);
-    serialPortUi->update_port_combobox(ui->portBox);
+    serialPortUi = new Ui::SerialPort(serial,
+                                      ui->portBox,
+                                      ui->rcvEdit);
+    serialPortUi->update_port_combobox();
 
     ui->portBox->installEventFilter(this);
     ui->dataBitsBox->setCurrentIndex(2);
@@ -43,7 +45,7 @@ MainWindow::~MainWindow()
 bool MainWindow::eventFilter(QObject *watched, QEvent *event) {
     if (watched == ui->portBox) {
         if (event->type() == QEvent::MouseButtonPress) {
-            serialPortUi->update_port_combobox(ui->portBox);
+            serialPortUi->update_port_combobox();
         }
     }
     return false;
@@ -66,6 +68,7 @@ void MainWindow::read_rcv_data()
 
 void MainWindow::lock_setting(bool state)
 {
+    state = !state;
     ui->portBox->setEnabled(state);
     ui->baudBox->setEnabled(state);
     ui->dataBitsBox->setEnabled(state);

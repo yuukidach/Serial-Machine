@@ -26,7 +26,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    SerialPort *serialPortUi;
+    Ui::SerialPort *serialPortUi;
     QSerialPort *serial;
     QMap<QString, QSerialPort::BaudRate> *baudRateOpt;
     QMap<QString, QSerialPort::DataBits> *dataBitsOpt;
