@@ -291,7 +291,7 @@
      <string>HEX</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="uftRadioBtn">
+   <widget class="QRadioButton" name="utfRadioBtn">
     <property name="geometry">
      <rect>
       <x>126</x>
