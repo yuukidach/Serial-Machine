@@ -16,7 +16,6 @@
 #include <QtWidgets/QWidget>
 #include <QSerialPort>
 #include <QSerialPortInfo>
-//#include "ui_mainwindow.h"
 
 namespace Ui {
     class SerialPort;

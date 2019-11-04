@@ -1,4 +1,5 @@
 #include<QShortcut>
+#include<QDebug>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -14,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->portBox->installEventFilter(this);
     ui->dataBitsBox->setCurrentIndex(3);
+    ui->stampCkBox->setCheckState(Qt::Checked);
 
     baudRateOpt = new QMap<QString, QSerialPort::BaudRate>;
     baudRateOpt->insert("9600", QSerialPort::Baud9600);
@@ -56,13 +58,18 @@ void MainWindow::read_rcv_data()
 {
     QByteArray buf;
     buf = serial->readAll();
-    if(!buf.isEmpty())
-    {
-        QString str = ui->rcvEdit->toPlainText();
-        str+=tr(buf);
-        ui->rcvEdit->clear();
-        ui->rcvEdit->append(str);
+    if(buf.isEmpty()) {
+        return;
     }
+
+    QString str = ui->rcvEdit->toPlainText();
+    // TODO: add timestamp
+//    if (ui->stampCkBox->checkState() == Qt::Checked) {
+//        str += Q
+//    }
+    str += tr(buf) + "\r\n";
+    ui->rcvEdit->clear();
+    ui->rcvEdit->append(str);
     buf.clear();
 }
 
@@ -118,7 +125,12 @@ void MainWindow::on_clearOutButton_clicked()
 
 void MainWindow::on_sendButton_clicked()
 {
-    serial->write(ui->sendEdit->toPlainText().toUtf8());
+    QString sendStr = ui->sendEdit->toPlainText();
+#ifdef __APPLE__
+    sendStr.replace("\n", "\r\n");
+#endif
+    qDebug() << sendStr;
+    serial->write(sendStr.toUtf8());
 }
 
 
@@ -129,7 +141,8 @@ void MainWindow::on_stampCkBox_toggled(bool checked)
     }
 }
 
-void MainWindow::on_checkBox_2_toggled(bool checked)
+
+void MainWindow::on_hexCkBox_toggled(bool checked)
 {
     QByteArray rcvBuffer = ui->rcvEdit->toPlainText().toUtf8();
     if (checked) {

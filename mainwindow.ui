@@ -7,13 +7,28 @@
     <x>0</x>
     <y>0</y>
     <width>925</width>
-    <height>626</height>
+    <height>580</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Serial Machine</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
    <widget class="QPushButton" name="openButton">
     <property name="geometry">
      <rect>
@@ -183,8 +198,14 @@
       <height>150</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
     <property name="text">
      <string>Send</string>
+    </property>
+    <property name="shortcut">
+     <string>Shift+Return</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">
@@ -275,7 +296,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Data Sent</string>
+     <string>Data to Send</string>
     </property>
    </widget>
    <widget class="QCheckBox" name="stampCkBox">
@@ -291,7 +312,7 @@
      <string>Add Time Stamp</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="checkBox_2">
+   <widget class="QCheckBox" name="hexCkBox">
     <property name="geometry">
      <rect>
       <x>15</x>
@@ -321,6 +342,11 @@
    </widget>
    <addaction name="menu"/>
   </widget>
+  <action name="actionee">
+   <property name="text">
+    <string>ee</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

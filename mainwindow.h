@@ -24,7 +24,7 @@ private slots:
     void on_clearOutButton_clicked();
     void on_sendButton_clicked();
     void on_stampCkBox_toggled(bool checked);
-    void on_checkBox_2_toggled(bool checked);
+    void on_hexCkBox_toggled(bool checked);
 
 private:
     Ui::MainWindow *ui;
