@@ -23,8 +23,8 @@ private slots:
     void on_clearInButton_clicked();
     void on_clearOutButton_clicked();
     void on_sendButton_clicked();
-    void on_hexRadioBtn_toggled(bool checked);
-    void on_utfRadioBtn_toggled(bool checked);
+    void on_stampCkBox_toggled(bool checked);
+    void on_checkBox_2_toggled(bool checked);
 
 private:
     Ui::MainWindow *ui;

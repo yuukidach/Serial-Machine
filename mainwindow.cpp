@@ -1,3 +1,4 @@
+#include<QShortcut>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -12,9 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     serialPortUi->update_port_combobox();
 
     ui->portBox->installEventFilter(this);
-    ui->dataBitsBox->setCurrentIndex(2);
-    ui->hexRadioBtn->setChecked(false);
-    ui->utfRadioBtn->setChecked(true);
+    ui->dataBitsBox->setCurrentIndex(3);
 
     baudRateOpt = new QMap<QString, QSerialPort::BaudRate>;
     baudRateOpt->insert("9600", QSerialPort::Baud9600);
@@ -123,22 +122,19 @@ void MainWindow::on_sendButton_clicked()
 }
 
 
-void MainWindow::on_hexRadioBtn_toggled(bool checked)
+void MainWindow::on_stampCkBox_toggled(bool checked)
 {
-    if (checked == false) {
-        return;
-    }
+    if (checked) {
 
-    QByteArray rcvStrBuffer = ui->rcvEdit->toPlainText().toUtf8();
-    ui->rcvEdit->setText(rcvStrBuffer.toHex(' '));
+    }
 }
 
-void MainWindow::on_utfRadioBtn_toggled(bool checked)
+void MainWindow::on_checkBox_2_toggled(bool checked)
 {
-    if (checked == false) {
-        return;
+    QByteArray rcvBuffer = ui->rcvEdit->toPlainText().toUtf8();
+    if (checked) {
+        ui->rcvEdit->setText(rcvBuffer.toHex(' '));
+    } else {
+        ui->rcvEdit->setText(QByteArray::fromHex(rcvBuffer));
     }
-
-    QByteArray rcvHexBuffer = ui->rcvEdit->toPlainText().toUtf8();
-    ui->rcvEdit->setText(QByteArray::fromHex(rcvHexBuffer));
 }
