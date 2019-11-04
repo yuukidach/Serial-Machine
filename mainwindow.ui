@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>546</height>
+    <width>925</width>
+    <height>626</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,10 +17,10 @@
    <widget class="QPushButton" name="openButton">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>447</y>
-      <width>113</width>
-      <height>32</height>
+      <x>10</x>
+      <y>218</y>
+      <width>211</width>
+      <height>30</height>
      </rect>
     </property>
     <property name="text">
@@ -44,7 +44,7 @@
     <property name="geometry">
      <rect>
       <x>97</x>
-      <y>70</y>
+      <y>68</y>
       <width>111</width>
       <height>32</height>
      </rect>
@@ -67,7 +67,7 @@
     <property name="geometry">
      <rect>
       <x>97</x>
-      <y>110</y>
+      <y>106</y>
       <width>111</width>
       <height>32</height>
      </rect>
@@ -97,7 +97,7 @@
     <property name="geometry">
      <rect>
       <x>97</x>
-      <y>150</y>
+      <y>144</y>
       <width>111</width>
       <height>32</height>
      </rect>
@@ -112,7 +112,7 @@
     <property name="geometry">
      <rect>
       <x>97</x>
-      <y>190</y>
+      <y>182</y>
       <width>111</width>
       <height>32</height>
      </rect>
@@ -133,8 +133,8 @@
      <rect>
       <x>240</x>
       <y>30</y>
-      <width>521</width>
-      <height>201</height>
+      <width>661</width>
+      <height>341</height>
      </rect>
     </property>
    </widget>
@@ -142,17 +142,17 @@
     <property name="geometry">
      <rect>
       <x>240</x>
-      <y>260</y>
-      <width>521</width>
-      <height>211</height>
+      <y>400</y>
+      <width>591</width>
+      <height>141</height>
      </rect>
     </property>
    </widget>
    <widget class="QPushButton" name="clearInButton">
     <property name="geometry">
      <rect>
-      <x>250</x>
-      <y>482</y>
+      <x>10</x>
+      <y>476</y>
       <width>211</width>
       <height>30</height>
      </rect>
@@ -164,9 +164,9 @@
    <widget class="QPushButton" name="clearOutButton">
     <property name="geometry">
      <rect>
-      <x>520</x>
-      <y>482</y>
-      <width>221</width>
+      <x>10</x>
+      <y>516</y>
+      <width>211</width>
       <height>32</height>
      </rect>
     </property>
@@ -177,10 +177,10 @@
    <widget class="QPushButton" name="sendButton">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>482</y>
-      <width>113</width>
-      <height>32</height>
+      <x>835</x>
+      <y>395</y>
+      <width>71</width>
+      <height>150</height>
      </rect>
     </property>
     <property name="text">
@@ -204,7 +204,7 @@
     <property name="geometry">
      <rect>
       <x>27</x>
-      <y>74</y>
+      <y>72</y>
       <width>61</width>
       <height>20</height>
      </rect>
@@ -217,7 +217,7 @@
     <property name="geometry">
      <rect>
       <x>27</x>
-      <y>116</y>
+      <y>112</y>
       <width>59</width>
       <height>16</height>
      </rect>
@@ -230,7 +230,7 @@
     <property name="geometry">
      <rect>
       <x>27</x>
-      <y>155</y>
+      <y>149</y>
       <width>59</width>
       <height>16</height>
      </rect>
@@ -243,7 +243,7 @@
     <property name="geometry">
      <rect>
       <x>27</x>
-      <y>195</y>
+      <y>187</y>
       <width>59</width>
       <height>16</height>
      </rect>
@@ -269,7 +269,7 @@
     <property name="geometry">
      <rect>
       <x>242</x>
-      <y>240</y>
+      <y>380</y>
       <width>91</width>
       <height>16</height>
      </rect>
@@ -282,7 +282,7 @@
     <property name="geometry">
      <rect>
       <x>33</x>
-      <y>236</y>
+      <y>252</y>
       <width>51</width>
       <height>20</height>
      </rect>
@@ -295,7 +295,7 @@
     <property name="geometry">
      <rect>
       <x>126</x>
-      <y>237</y>
+      <y>252</y>
       <width>61</width>
       <height>20</height>
      </rect>
@@ -304,22 +304,48 @@
      <string>UTF-8</string>
     </property>
    </widget>
+   <widget class="QCheckBox" name="stampCkBox">
+    <property name="geometry">
+     <rect>
+      <x>18</x>
+      <y>280</y>
+      <width>131</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add Time Stamp</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_2">
+    <property name="geometry">
+     <rect>
+      <x>18</x>
+      <y>307</y>
+      <width>131</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Show in HEX</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>925</width>
      <height>22</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuUart_Machine">
+   <widget class="QMenu" name="menu">
     <property name="title">
      <string>Uart Machine</string>
     </property>
    </widget>
-   <addaction name="menuUart_Machine"/>
+   <addaction name="menu"/>
   </widget>
  </widget>
  <resources/>
