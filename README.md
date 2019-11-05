@@ -2,7 +2,7 @@
 
 This is a serial (UART) communication tool.
 
-![ui](./res/ui.jpg)
+![ui](./res/ui.png)
 
 ## Usage
 

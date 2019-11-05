@@ -1,5 +1,7 @@
 #include<QShortcut>
+#include<QDateTime>
 #include<QDebug>
+#include<QThread>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -16,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->portBox->installEventFilter(this);
     ui->dataBitsBox->setCurrentIndex(3);
     ui->stampCkBox->setCheckState(Qt::Checked);
+    ui->rcvEdit->setReadOnly(true);
 
     baudRateOpt = new QMap<QString, QSerialPort::BaudRate>;
     baudRateOpt->insert("9600", QSerialPort::Baud9600);
@@ -57,19 +60,17 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *event) {
 void MainWindow::read_rcv_data()
 {
     QByteArray buf;
-    buf = serial->readAll();
+
+    buf = serial->readAll().replace("\r", "");
+    qDebug() << buf;
     if(buf.isEmpty()) {
         return;
     }
 
-    QString str = ui->rcvEdit->toPlainText();
-    // TODO: add timestamp
-//    if (ui->stampCkBox->checkState() == Qt::Checked) {
-//        str += Q
-//    }
-    str += tr(buf) + "\r\n";
-    ui->rcvEdit->clear();
-    ui->rcvEdit->append(str);
+    if (ui->stampCkBox->checkState() == Qt::Checked) {
+        ui->rcvEdit->append(QDateTime::currentDateTime().toString("[yy-MM-dd HH:mm:ss]:"));
+    }
+    ui->rcvEdit->append(buf);
     buf.clear();
 }
 
@@ -129,7 +130,6 @@ void MainWindow::on_sendButton_clicked()
 #ifdef __APPLE__
     sendStr.replace("\n", "\r\n");
 #endif
-    qDebug() << sendStr;
     serial->write(sendStr.toUtf8());
 }
 
