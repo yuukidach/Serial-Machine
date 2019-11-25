@@ -1,7 +1,7 @@
-#include<QShortcut>
-#include<QDateTime>
-#include<QDebug>
-#include<QThread>
+#include <QShortcut>
+#include <QDateTime>
+#include <QDebug>
+#include <QThread>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
