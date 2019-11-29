@@ -60,6 +60,7 @@ ApplicationWindow {
         }
 
         ScrollBar.vertical: ScrollBar {}
+        flickableDirection: Flickable.VerticalFlick
     }
 
     Label {
