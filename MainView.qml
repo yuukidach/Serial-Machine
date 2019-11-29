@@ -4,6 +4,8 @@ import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.3
 import QtQuick.Controls.Material 2.3
 
+import "view"
+
 
 ApplicationWindow {
     id: main
@@ -28,46 +30,15 @@ ApplicationWindow {
         anchors.topMargin: 10
     }
 
-    Flickable {
-        id: inTextFlick
-        anchors {
-            left: sidePannelForm.right
-            right: parent.right
-            top: inText.bottom
-            topMargin: 5
-            rightMargin: 15
-        }
-        height: parent.height * 0.5
-        contentHeight: height
-        clip: true
-
-        TextArea.flickable: TextArea {
-            id: inTextBox
-            text: ""
-            font.family: "Courier"
-            background: Rectangle {
-                border.color: "gray"
-                color: "#282b2c"
-                radius: 5
-            }
-            readOnly: true
-            textMargin: 4           
-        }
-
-        Connections {
-            target: MainPresenter
-            onRcvDataArrived: inTextBox.append(MainPresenter.rcv_data)
-        }
-
-        ScrollBar.vertical: ScrollBar {}
-        flickableDirection: Flickable.VerticalFlick
+    ScrollText {
+        id: inScrollText
     }
 
     Label {
         id: outText
         text: qsTr("Data Out")
         anchors.left: sidePannelForm.right
-        anchors.top: inTextFlick.bottom
+        anchors.top: inScrollText.bottom
         anchors.topMargin: 10
     }
 
