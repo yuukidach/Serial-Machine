@@ -67,6 +67,7 @@ Item {
         anchors.top: stopBitsCombo.bottom
         anchors.topMargin: 15
         height: 32
+        onCheckedChanged: MainPresenter.setTimestampNeed(checked)
     }
 
     CheckBox {
@@ -77,6 +78,7 @@ Item {
         anchors.topMargin: 15
         width: timeStampCheck.width
         height: 32
+        onCheckedChanged: MainPresenter.setHexModeNeed(checked)
     }
 
     Button {

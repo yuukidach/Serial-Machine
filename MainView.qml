@@ -14,8 +14,8 @@ ApplicationWindow {
     Material.theme: Material.Dark
     Material.accent: Material.Indigo
 
-    minimumWidth: 900
-    minimumHeight: 540
+    minimumWidth: 1000
+    minimumHeight: 600
     visible: true
 
     SidePannel {

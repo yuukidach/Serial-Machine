@@ -12,6 +12,8 @@ class MainPresenter: public QObject
 private:
     UartSerial& uart_serial_;
     QByteArray rcv_data_;
+    bool is_timestamp_needed_ = false;
+    bool is_hex_mode_needed_ = false;
 
     Q_PROPERTY(QStringList name_list READ GetAllPortOpt)
     Q_PROPERTY(QStringList baud_list READ GetAllBaudOpt)
@@ -29,6 +31,8 @@ public:
                               QString stop_bits_list);
     Q_INVOKABLE void closePort();
     Q_INVOKABLE void sendMsg(QString msg);
+    Q_INVOKABLE void setTimestampNeed(bool is_need);
+    Q_INVOKABLE void setHexModeNeed(bool is_need);
     Q_INVOKABLE QStringList GetAllPortOpt();
     Q_INVOKABLE QStringList GetAllBaudOpt();
     Q_INVOKABLE QStringList GetAllStopBitsOpt();
@@ -36,6 +40,8 @@ public:
     Q_INVOKABLE QStringList GetAllDataBitsOpt();
 
     QString GetPortName();
+    bool getTimestampNeed(void);
+    bool getHexModeNeed(void);
 
 signals:
     void PortNameChanged();

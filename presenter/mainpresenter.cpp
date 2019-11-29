@@ -1,11 +1,12 @@
-#include "mainpresenter.h"
 #include <QDebug>
+#include <QDateTime>
+#include "mainpresenter.h"
 
 MainPresenter::MainPresenter(UartSerial& uart_serial):
     uart_serial_(uart_serial)
 {
-    connect(&uart_serial_, SIGNAL(PortNameChanged(QString)),
-            this, SLOT(SetPortName(QString)));
+//    connect(&uart_serial_, SIGNAL(PortNameChanged(QString)),
+//            this, SLOT(SetPortName(QString)));
     connect(&uart_serial_, SIGNAL(rcvDataArrived()),
             this, SLOT(updateRcvData()));
 }
@@ -77,7 +78,16 @@ QStringList MainPresenter::GetAllStopBitsOpt()
 
 void MainPresenter::updateRcvData()
 {
-    rcv_data_ = uart_serial_.readLastRcv();
+    rcv_data_ = "";
+    QByteArray real_data = uart_serial_.readLastRcv();
+
+    if (getTimestampNeed()) {
+        rcv_data_ = QDateTime::currentDateTime().toString("[yy-MM-dd HH:mm:ss:zzz]:\n").toUtf8();
+    }
+    if (getHexModeNeed()) {
+        real_data = real_data.toHex(' ').toUpper();
+    }
+    rcv_data_.append(real_data);
     emit rcvDataArrived();
 }
 
@@ -85,6 +95,30 @@ void MainPresenter::updateRcvData()
 QByteArray MainPresenter::getRcvData()
 {
     return rcv_data_;
+}
+
+
+bool MainPresenter::getTimestampNeed()
+{
+    return is_timestamp_needed_;
+}
+
+
+void MainPresenter::setTimestampNeed(bool is_need)
+{
+    is_timestamp_needed_ = is_need;
+}
+
+
+bool MainPresenter::getHexModeNeed()
+{
+    return is_hex_mode_needed_;
+}
+
+
+void MainPresenter::setHexModeNeed(bool is_need)
+{
+    is_hex_mode_needed_ = is_need;
 }
 
 

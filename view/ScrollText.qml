@@ -2,7 +2,7 @@ import QtQuick 2.0
 import QtQuick.Controls 2.3
 
 Item {
-    height: parent.height * 0.5
+    height: parent.height * 0.55
     anchors {
         left: sidePannelForm.right
         right: parent.right
@@ -37,12 +37,9 @@ Item {
             background: Rectangle{
                 color: "transparent"
             }
-            onHeightChanged: {
-                console.log(inTextFlick.contentHeight+"content")
-                console.log(inTextFlick.height+"flick")
-            }
             readOnly: true
             textMargin: 4
+            wrapMode: Text.WrapAtWordBoundaryOrAnywhere
         }
 
         ScrollBar.vertical: ScrollBar {
