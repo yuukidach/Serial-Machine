@@ -1,7 +1,7 @@
 <RCC>
     <qresource prefix="/">
-        <file>MainView.qml</file>
-        <file>SidePannel.qml</file>
+        <file>view/MainView.qml</file>
+        <file>view/SidePannel.qml</file>
         <file>qtquickcontrols2.conf</file>
         <file>view/ScrollText.qml</file>
     </qresource>
