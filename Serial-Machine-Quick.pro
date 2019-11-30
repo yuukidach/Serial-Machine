@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
+        model/datahandler.cpp \
         presenter/mainpresenter.cpp \
         uartserial.cpp
 
@@ -37,5 +38,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 DISTFILES +=
 
 HEADERS += \
+    model/datahandler.h \
     presenter/mainpresenter.h \
     uartserial.h

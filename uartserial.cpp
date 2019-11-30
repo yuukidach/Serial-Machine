@@ -137,7 +137,6 @@ void UartSerial::Open() {
     port_.setStopBits(stop_bits_);
     port_.setFlowControl(QSerialPort::NoFlowControl);
     port_.open(QIODevice::ReadWrite);
-    qDebug() << name_ << baud_ << data_bits_ << parity_ << stop_bits_;
     connect(&port_, SIGNAL(readyRead()),
             this, SLOT(readByInt()));
 }

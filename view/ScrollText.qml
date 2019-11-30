@@ -2,6 +2,8 @@ import QtQuick 2.0
 import QtQuick.Controls 2.3
 
 Item {
+    property alias text: inTextBox.text
+
     height: parent.height * 0.55
     anchors {
         left: sidePannelForm.right

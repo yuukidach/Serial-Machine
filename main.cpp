@@ -20,8 +20,11 @@ int main(int argc, char *argv[])
     }, Qt::QueuedConnection);
 
     UartSerial uart_serial;
+    DataHandler data_handler;
 
-    engine.rootContext()->setContextProperty("MainPresenter", new MainPresenter(uart_serial));
+    engine.rootContext()->setContextProperty("MainPresenter",
+                                             new MainPresenter(uart_serial,
+                                                               data_handler));
     engine.load(url);
 
     return app.exec();

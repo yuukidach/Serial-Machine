@@ -109,10 +109,11 @@ Item {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: clrOutBtn.top
         anchors.bottomMargin: 10
-        onClicked: inTextBox.text=""
+        onClicked: inScrollText.text=""
     }
 
     Button {
+        // TODO: fix the problem that this button does not work
         id: clrOutBtn
         text: qsTr("Clear Output")
         anchors.horizontalCenter: parent.horizontalCenter

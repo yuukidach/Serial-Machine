@@ -3,6 +3,7 @@ import QtQuick.Window 2.12
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.3
 import QtQuick.Controls.Material 2.3
+import QtQuick.Dialogs 1.2
 
 ApplicationWindow {
     id: main
@@ -52,9 +53,17 @@ ApplicationWindow {
         font.family: "Courier"
     }
 
-    //        Button {
-    //            text: "Save"
-    //        }
+    Button {
+        id: saveBtn
+        text: "Save"
+       anchors {
+            bottom: sendBtn.top
+            bottomMargin: 10
+            right: sendBtn.right
+        }
+        onClicked: saveFileDialog.open()
+    }
+
 
     Button {
         id: sendBtn
@@ -64,6 +73,16 @@ ApplicationWindow {
         anchors.rightMargin: 15
         anchors.bottomMargin: 10
         onClicked: MainPresenter.sendMsg(outTextBox.text)
+    }
+
+    FileDialog {
+        id: saveFileDialog
+        title: qsTr("Please choose a file")
+        folder: shortcuts.home
+        selectExisting: false
+        onAccepted: {
+            MainPresenter.saveData(saveFileDialog.fileUrl, inScrollText.text)
+        }
     }
 }
 

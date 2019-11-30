@@ -2,8 +2,9 @@
 #include <QDateTime>
 #include "mainpresenter.h"
 
-MainPresenter::MainPresenter(UartSerial& uart_serial):
-    uart_serial_(uart_serial)
+MainPresenter::MainPresenter(UartSerial& uart_serial, DataHandler& data_handler):
+    uart_serial_(uart_serial),
+    data_handler_(data_handler)
 {
 //    connect(&uart_serial_, SIGNAL(PortNameChanged(QString)),
 //            this, SLOT(SetPortName(QString)));
@@ -47,7 +48,6 @@ QString MainPresenter::GetPortName()
 
 QStringList MainPresenter::GetAllPortOpt()
 {
-    qDebug() << uart_serial_.GetAllPortOpt();
     return uart_serial_.GetAllPortOpt();
 }
 
@@ -121,6 +121,15 @@ void MainPresenter::setHexModeNeed(bool is_need)
     is_hex_mode_needed_ = is_need;
 }
 
+
+void MainPresenter::saveData(QString fileurl, QByteArray data)
+{
+    // FileDialog return the url of the file.
+    // eg. file:///Users/who/test.txt.
+    // We should remove the first 7 charactors.
+    QString file_loc = fileurl.remove(0, 7);
+    data_handler_.saveData(file_loc, data);
+}
 
 
 

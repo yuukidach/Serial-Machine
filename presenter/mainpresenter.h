@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QString>
 #include "uartserial.h"
+#include "model/datahandler.h"
 
 class MainPresenter: public QObject
 {
@@ -11,6 +12,8 @@ class MainPresenter: public QObject
 
 private:
     UartSerial& uart_serial_;
+    DataHandler& data_handler_;
+
     QByteArray rcv_data_;
     bool is_timestamp_needed_ = false;
     bool is_hex_mode_needed_ = false;
@@ -23,7 +26,7 @@ private:
     Q_PROPERTY(QByteArray rcv_data READ getRcvData)
 
 public:
-    MainPresenter(UartSerial& uart_serial);
+    MainPresenter(UartSerial& uart_serial, DataHandler& data_handler);
     Q_INVOKABLE void openPort(QString name,
                               QString baud,
                               QString data_bits,
@@ -33,11 +36,14 @@ public:
     Q_INVOKABLE void sendMsg(QString msg);
     Q_INVOKABLE void setTimestampNeed(bool is_need);
     Q_INVOKABLE void setHexModeNeed(bool is_need);
-    Q_INVOKABLE QStringList GetAllPortOpt();
-    Q_INVOKABLE QStringList GetAllBaudOpt();
-    Q_INVOKABLE QStringList GetAllStopBitsOpt();
-    Q_INVOKABLE QStringList GetAllParityOpt();
-    Q_INVOKABLE QStringList GetAllDataBitsOpt();
+
+    Q_INVOKABLE void saveData(QString fileurl, QByteArray data);
+
+    QStringList GetAllPortOpt();
+    QStringList GetAllBaudOpt();
+    QStringList GetAllStopBitsOpt();
+    QStringList GetAllParityOpt();
+    QStringList GetAllDataBitsOpt();
 
     QString GetPortName();
     bool getTimestampNeed(void);
