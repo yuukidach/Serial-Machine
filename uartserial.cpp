@@ -158,6 +158,11 @@ void UartSerial::send(QString msg){
 void UartSerial::readByInt()
 {
     rcv_data_ = port_.readAll().replace("\r", "");
+
+    if (rcv_data_ == "") {
+        return;
+    }
+
     emit rcvDataArrived();
 }
 
