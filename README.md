@@ -10,7 +10,7 @@ Open Application and set right configurations.
 
 ![App Main GUI](./res/app_gui.png)
 
-## Build by Youself
+## Build by Yourself
 
 If you want to build the application bundle by yourself, for MacOS, remember to use `-qmldir` option with `macdepolyqt`.
 
