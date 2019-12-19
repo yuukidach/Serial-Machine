@@ -2,11 +2,13 @@ import QtQuick 2.4
 import QtQuick.Controls 2.3
 
 Item {
-    width: portCombo.width + 20
+    width: baudCombo.width + 20
     height: main.height
     anchors.left: main.left
 
     ComboBox {
+        property int textWidth
+
         id: portCombo
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
@@ -14,7 +16,21 @@ Item {
         width: 140
         height: 24
         model: MainPresenter.name_list
-        onPressedChanged: if (pressed) model = MainPresenter.name_list
+
+        TextMetrics {
+            id: popupMetrics
+        }
+
+        onPressedChanged: {
+            model = MainPresenter.name_list
+            textWidth = 140
+            for (var i = 0; i < count; i++) {
+                popupMetrics.text = textAt(i)
+                textWidth = Math.max(popupMetrics.width, textWidth)
+                console.log(textWidth)
+                popup.width = textWidth
+            }
+        }
     }
 
     ComboBox {
